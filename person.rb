@@ -6,8 +6,7 @@ require_relative './book'
 require_relative './rental'
 
 class Person < Nameable
-  attr_writer :id
-  attr_reader :rentals
+  attr_reader :rentals, :id
   attr_accessor :name, :age
 
   def initialize(age, name = 'Unknown', parent_permission: true)
@@ -36,7 +35,7 @@ class Person < Nameable
   end
 
   def add_rentals(rental)
-    @rentals = rental
-    rental << self
+    @rentals << rental
+    rental.person = self
   end
 end
