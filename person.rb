@@ -1,12 +1,13 @@
-require_relative './basedecorator.rb'
-require_relative './capitalizedecorator.rb'
-require_relative './trimmerdecorator.rb'
+require_relative './basedecorator'
+require_relative './capitalizedecorator'
+require_relative './trimmerdecorator'
 
 class Person < Nameable
   attr_writer :id
   attr_accessor :name, :age
 
   def initialize(age, name = 'Unknown', parent_permission: true)
+    super()
     @id = Random.rand(1..1000)
     @name = name
     @age = age
@@ -29,11 +30,3 @@ class Person < Nameable
     @name
   end
 end
-
-person = Person.new(22, 'maximilianus')
-p person.correct_name
-  capitalizedPerson = CapitalizeDecorator.new(person)
-p  capitalizedPerson.correct_name
-  capitalizedTrimmedPerson = TrimmerDecorator.new(capitalizedPerson)
-p  capitalizedTrimmedPerson.correct_name
-
