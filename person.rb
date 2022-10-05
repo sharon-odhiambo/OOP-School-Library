@@ -1,9 +1,9 @@
 require_relative './basedecorator'
 require_relative './capitalizedecorator'
 require_relative './trimmerdecorator'
-require_relative './classroom.rb'
-require_relative './book.rb'
-require_relative './rental.rb'
+require_relative './classroom'
+require_relative './book'
+require_relative './rental'
 
 class Person < Nameable
   attr_writer :id
@@ -38,6 +38,5 @@ class Person < Nameable
   def add_rentals(rental)
     @rentals = rental
     rental << self
+  end
 end
-end
-
