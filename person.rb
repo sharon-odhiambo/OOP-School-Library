@@ -34,5 +34,10 @@ class Person < Nameable
   def correct_name
     @name
   end
+
+  def add_rentals(rental)
+    @rentals = rental
+    rental << self
+end
 end
 
