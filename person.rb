@@ -1,9 +1,13 @@
 require_relative './basedecorator'
 require_relative './capitalizedecorator'
 require_relative './trimmerdecorator'
+require_relative './classroom.rb'
+require_relative './book.rb'
+require_relative './rental.rb'
 
 class Person < Nameable
   attr_writer :id
+  attr_reader :rentals
   attr_accessor :name, :age
 
   def initialize(age, name = 'Unknown', parent_permission: true)
@@ -12,6 +16,7 @@ class Person < Nameable
     @name = name
     @age = age
     @parent_permission = parent_permission
+    @rentals = []
   end
 
   private
@@ -30,3 +35,4 @@ class Person < Nameable
     @name
   end
 end
+

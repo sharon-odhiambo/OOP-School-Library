@@ -1,3 +1,5 @@
+require_relative './student.rb'
+
 class Classroom
     attr_accessor :label
     attr_reader :students
