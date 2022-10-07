@@ -7,7 +7,7 @@ class App
   attr_accessor :book, :teacher, :rentals, :student
 
   def initialize
-    @books = [{ author: 'Sharon', title: 'Make money' }, { author: 'Aquinas', title: 'Dream On' }]
+    @books = []
     @people = []
     @rentals = []
   end
@@ -33,7 +33,7 @@ class App
   def list_books
     if @books.length.positive?
       @books.each do |book|
-        puts "Title: '#{book[:title]}', Author: #{book[:author]}"
+        puts "Title: '#{book.title}', Author: #{book.author}"
       end
     else
       puts 'There are no books found'
@@ -43,13 +43,8 @@ class App
   def list_people
     if @people.length.positive?
       @people.each do |person|
-        unless person.has_a(specialization)
-          puts "[Student] Name: #{person[:name]}\", ID: #{person[:id]}, Age: #{person[:age]}"
+          puts "[#{person.class}] Name: #{person.name}\", ID: #{person.id}, Age: #{person.age}"
         end
-        unless person.has_a(classroom)
-          puts "[Teacher] Name: #{person[:name]}\", ID: #{person[:id]}, Age: #{person[:age]}"
-        end
-      end
     else
       puts 'There are no people found'
     end
@@ -57,31 +52,31 @@ class App
 
   def create_rental
     puts 'Select a book from the following list by number'
-    all_books.each_with_index do |book, index|
-      puts "#{index}) Title: '#{book[:title]}', Author: #{book[:author]}"
+    @books.each_with_index do |book, index|
+      puts "#{index}) Title: \"#{book.title}\", Author: #{book.author}"
     end
-    book = gets.chomp.to_i
+    selected_book = gets.chomp.to_i
+    book = @books[selected_book]
     puts 'Select a person from the following list by number (not id)'
-    all_people.each_with_index do |person, index|
-      unless person.has_a(specialization)
-        puts "#{index}) [Student] Name: #{person[:name]}\", ID: #{person[:id]}, Age: #{person[:age]}"
-      end
-      unless person.has_a(classroom)
-        puts "#{index}) [Teacher] Name: #{person[:name]}\", ID: #{person[:id]}, Age: #{person[:age]}"
-      end
+    @people.each_with_index do |person, index|
+      puts "#{index}) [#{person.class}] Name: \"#{person.name}\", ID: #{person.id}, Age: #{person.age}"
     end
-    person = gets.chomp.to_s
+    selected_person = gets.chomp.to_i
+    person = @people[selected_person]
     date = Time.now.strftime('%Y/%m/%d')
-
-    rental = Rentals.new(date, book, person)
+    puts "Date: #{date}"
+    rental = Rental.new(date, book, person)
     @rentals << rental
-    puts 'Rental created successfully'
+    puts 'Book rented successfully'
   end
 
   def list_rentals
+    puts 'Enter person ID: '
+    person_id = gets.chomp.to_i
+
+    rentals = @rentals.filter { |rental| rental.person.id == person_id }
     if @rentals.length.positive?
       rentals.each do |rental|
-        puts "ID of person: #{rental.person[:id]}"
         puts 'Rentals: '
         puts "Date: #{rental.date}, Book \"#{rental.book.title}\" by #{rental.book.author}"
       end

@@ -6,10 +6,10 @@ class Main
   end
 
   def library_options
+    print "Welcome to the School Library App!\n"
     @options = 0
     while @options != 7
-      print "Welcome to the School Library App!\n\n"
-      print "Please choose an option by entering a number: \n"
+      print "\nPlease choose an option by entering a number: \n"
       print "1 - list all books\n"
       print "2 - list all people\n"
       print "3 - create a person\n"
