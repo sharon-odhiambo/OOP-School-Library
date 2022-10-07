@@ -9,8 +9,8 @@
 # Getting started
 
 1. $ git clone https://github.com/sharon-odhiambo/OOP-School-Library
-2. cd <folder-name>
-3. Open your terminal and run this command to start: ruby main.rb
+2. **cd folder-name**
+3. Open your terminal and run this command to start: **ruby main.rb**
 4. Make your selections from the menu that appears accordingly.
 You can check the list of books, create a student or teacher, add a rental or list rentals and exit the app!
 
