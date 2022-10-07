@@ -6,6 +6,8 @@ class Main
   end
 
   def library_options
+    @options = 0
+    while @options != 7
     print "Welcome to the School Library App!\n\n"
     print "Please choose an option by entering a number: \n"
     print "1 - list all books\n"
@@ -15,10 +17,12 @@ class Main
     print "5 - create a rental\n"
     print "6 - list all rentals for a given person id\n"
     print "7 - exit\n"
+    run_app
+    end
   end
   
-  option = gets.chomp.to_i
   def run_app
+    option = gets.chomp.to_i
     case option
     when 1
       @menu.list_books
