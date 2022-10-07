@@ -1,13 +1,18 @@
 # OOP-School-Library
-This repository contains an initial step to my OOP school library project where I create the classes representing the students and the teachers
+- This is a school library that uses OOP to build record app for adding students, teachers, book rentals and list all the available rented books alongside either the teacher or student and indicates the date. The app organizes everything in a great way allowing easy maneuver.
 
-## Getting Started
+# Built With
+- Languages: Ruby
+- Models/Frameworks: OOP
 
-git clone https://github.com/sharon-odhiambo/OOP-School-Library
 
-bundle install
+# Getting started
 
-Ready to go!
+1. $ git clone https://github.com/sharon-odhiambo/OOP-School-Library
+2. **cd folder-name**
+3. Open your terminal and run this command to start: **ruby main.rb**
+4. Make your selections from the menu that appears accordingly.
+You can check the list of books, create a student or teacher, add a rental or list rentals and exit the app!
 
 ## Author
 
