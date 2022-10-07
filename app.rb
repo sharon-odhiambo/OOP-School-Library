@@ -43,8 +43,8 @@ class App
   def list_people
     if @people.length.positive?
       @people.each do |person|
-          puts "[#{person.class}] Name: #{person.name}\", ID: #{person.id}, Age: #{person.age}"
-        end
+        puts "[#{person.class}] Name: #{person.name}\", ID: #{person.id}, Age: #{person.age}"
+      end
     else
       puts 'There are no people found'
     end
