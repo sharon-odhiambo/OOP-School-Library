@@ -21,6 +21,7 @@ class Main
     end
   end
 
+  # rubocop:disable Metrics/CyclomaticComplexity
   def run_app
     option = gets.chomp.to_i
     case option
@@ -40,6 +41,7 @@ class Main
       @menu.exit_app
     end
   end
+  # rubocop:enable Metrics/CyclomaticComplexity
 end
 
 options = Main.new
