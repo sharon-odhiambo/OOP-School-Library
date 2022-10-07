@@ -1,10 +1,10 @@
 require_relative './classroom'
+require_relative './person'
 
-class Student < Person
+class Student
   attr_reader :classroom
 
-  def initialize(classroom)
-    super(age, name)
+  def initialize(age, name, parent_permission, classroom: "Maths")
     @classroom = classroom
   end
 
@@ -15,5 +15,15 @@ class Student < Person
   def classroom=(classroom)
     @classroom = classroom
     classroom.students << self unless classroom.students.include?(self)
+  end
+
+  def can_use_services?
+    of_age? || @parent_permission
+  end
+
+  private
+
+  def of_age?
+    @age >= 18
   end
 end

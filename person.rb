@@ -18,18 +18,6 @@ class Person < Nameable
     @rentals = []
   end
 
-  private
-
-  def of_age?
-    @age >= 18
-  end
-
-  public
-
-  def can_use_services?
-    of_age? || @parent_permission
-  end
-
   def correct_name
     @name
   end
@@ -37,5 +25,9 @@ class Person < Nameable
   def add_rentals(rental)
     @rentals << rental
     rental.person = self
+  end
+
+  def can_use_services?
+    true
   end
 end
