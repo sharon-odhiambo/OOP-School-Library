@@ -1,4 +1,5 @@
 require_relative './app'
+require 'pry'
 
 class Main
   def initialize
@@ -30,7 +31,9 @@ class Main
     when 2
       @menu.list_people
     when 3
-      @menu.create_person
+      p @menu
+      binding.pry
+      @menu.create_teacher
     when 4
       @menu.create_book
     when 5

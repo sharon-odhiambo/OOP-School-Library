@@ -102,9 +102,9 @@ class App
 
     case permission
     when 'N'
-      permission = false
-    when 'Y'
       permission = true
+    when 'Y'
+      permission = false
     else
       print 'Has parent permission? [Y/N]: '
       permission = gets.chomp.to_s.upcase
@@ -124,7 +124,7 @@ class App
     specialization = gets.chomp.to_s
 
     teacher = Teacher.new(age, name, specialization)
-    @people << teacher
+    @people << student
     puts 'Person created successfully'
   end
 end
