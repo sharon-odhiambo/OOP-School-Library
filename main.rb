@@ -1,6 +1,6 @@
-require_relative './books'
-require_relative './persons'
-require_relative './rentals'
+require_relative './mybooks'
+require_relative './mypersons'
+require_relative './myrentals'
 
 class Main
   attr_accessor :title, :author, :name, :age
