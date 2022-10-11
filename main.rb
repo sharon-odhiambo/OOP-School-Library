@@ -3,7 +3,7 @@ require_relative './mypersons'
 require_relative './myrentals'
 
 class Main
-  attr_accessor :title, :author, :name, :age
+  attr_accessor :title, :author, :name, :age , :books
   attr_reader :date
 
   def initialize

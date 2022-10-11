@@ -1,0 +1,14 @@
+[
+  {
+    "type": "Student",
+    "age": 25,
+    "name": "Nick",
+    "Parent Permission": true
+  },
+  {
+    "type": "Teacher",
+    "age": 36,
+    "name": "Sharon",
+    "specialization": "Maths"
+  }
+]

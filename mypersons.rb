@@ -48,7 +48,16 @@ class Person
     end
 
     student = Student.new(age, name, permission)
+    my_student = {'type': 'Student', 'age': age, 'name': name, 'Parent Permission': permission}
     @people << student
+    if File.size?('./storage/person.json')
+      file = File.read('./storage/person.json')
+      student_list = JSON.parse(file)
+      student_list << my_student
+      File.write('./storage/person.json', JSON.pretty_generate(student_list))
+    else
+    File.write('./storage/person.json', JSON.pretty_generate([my_student]), mode: "a")
+    end
     puts 'Person created successfully'
   end
 
@@ -61,7 +70,16 @@ class Person
     specialization = gets.chomp.to_s
 
     teacher = Teacher.new(age, name, specialization)
+    my_teacher = {'type': 'Teacher', 'age': age, 'name': name, 'specialization': specialization}
     @people << teacher
+    if File.size?('./storage/person.json')
+      file = File.read('./storage/person.json')
+      teacher_list = JSON.parse(file)
+      teacher_list << my_teacher
+      File.write('./storage/person.json', JSON.pretty_generate(teacher_list))
+    else
+    File.write('./storage/person.json', JSON.pretty_generate([my_teacher]), mode: "a")
+    end
     puts 'Person created successfully'
   end
 end

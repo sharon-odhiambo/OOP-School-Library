@@ -27,8 +27,18 @@ class Rental
     person = @people[selected_person]
     date = Time.now.strftime('%Y/%m/%d')
     puts "Date: #{date}"
+    
     rental = Rental.new(date, book, person)
+    my_rental = {'Date': date, 'title': book.title, 'author': book.author, 'age': person.age, 'name': person.name}
     @rentals << rental
+    if File.size?('./rental.json')
+      file = File.read('./rental.json')
+      rental_list = JSON.parse(file)
+      rental_list << my_student
+      File.write('./rental.json', JSON.pretty_generate(rental_list))
+    else
+    File.write('./rental.json', JSON.pretty_generate([my_rental]), mode: "a")
+    end
     puts 'Book rented successfully'
   end
 

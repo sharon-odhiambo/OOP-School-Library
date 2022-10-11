@@ -1,4 +1,5 @@
 require_relative './book'
+require 'json'
 
 class Books
   attr_accessor :title, :author
@@ -7,6 +8,8 @@ class Books
     @books = []
   end
 
+
+
   def create_book
     print 'Title: '
     title = gets.chomp.to_s
@@ -14,7 +17,16 @@ class Books
     author = gets.chomp.to_s
 
     book = Book.new(title, author)
+    my_book = {'title': title, 'author': author}
     @books << book
+    if File.size?('./storage/books.json')
+      file = File.read('./storage/books.json')
+      new_list = JSON.parse(file)
+      new_list << my_book
+      File.write('./storage/books.json', JSON.pretty_generate(new_list))
+    else
+    File.write('./storage/books.json', JSON.pretty_generate([my_book]), mode: "a")
+    end
     puts 'Book created successfully'
   end
 
