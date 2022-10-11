@@ -1,5 +1,5 @@
-require_relative './books'
-require_relative './persons'
+require_relative './book'
+require_relative './person'
 require_relative './rental'
 
 class Rental
