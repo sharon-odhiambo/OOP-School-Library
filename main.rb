@@ -1,8 +1,14 @@
-require_relative './app'
+require_relative './Books'
+require_relative './Persons'
+require_relative './Rentals'
 
 class Main
+  attr_accessor :title, :author, :name, :age
+  attr_reader :date
   def initialize
-    @menu = App.new
+    @books = Books.new()
+    @people = Person.new(age, name)
+    @rentals = Rental.new()
   end
 
   def library_options
@@ -26,22 +32,27 @@ class Main
     option = gets.chomp.to_i
     case option
     when 1
-      @menu.list_books
+      @books.list_books
     when 2
-      @menu.list_people
+      @people.list_people
     when 3
-      @menu.create_person
+      @people.create_person
     when 4
-      @menu.create_book
+      @books.create_book
     when 5
-      @menu.create_rental
+      @rentals.create_rental
     when 6
-      @menu.list_rentals
+      @rentals.list_rentals
     when 7
-      @menu.exit_app
+      exit_app
     end
   end
   # rubocop:enable Metrics/CyclomaticComplexity
+  private
+  def exit_app
+    puts 'Thank you for using this app'
+    exit!
+  end
 end
 
 options = Main.new
