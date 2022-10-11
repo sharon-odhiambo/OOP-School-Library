@@ -1,14 +1,15 @@
-require_relative './Books'
-require_relative './Persons'
-require_relative './Rentals'
+require_relative './books'
+require_relative './persons'
+require_relative './rentals'
 
 class Main
   attr_accessor :title, :author, :name, :age
   attr_reader :date
+
   def initialize
-    @books = Books.new()
+    @books = Books.new
     @people = Person.new(age, name)
-    @rentals = Rental.new()
+    @rentals = Rental.new(date, @books, @people)
   end
 
   def library_options
@@ -48,7 +49,9 @@ class Main
     end
   end
   # rubocop:enable Metrics/CyclomaticComplexity
+
   private
+
   def exit_app
     puts 'Thank you for using this app'
     exit!
