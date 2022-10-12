@@ -3,7 +3,7 @@ require_relative './mypersons'
 require_relative './myrentals'
 
 class Main
-  attr_accessor :title, :author, :name, :age
+  attr_accessor :title, :author, :name, :age, :books
   attr_reader :date
 
   def initialize
@@ -14,6 +14,9 @@ class Main
 
   def library_options
     print "Welcome to the School Library App!\n"
+    @books.list_books
+    @people.list_people
+    @rentals.list_rentals
     @options = 0
     while @options != 7
       print "\nPlease choose an option by entering a number: \n"
@@ -43,7 +46,7 @@ class Main
     when 5
       @rentals.create_rental
     when 6
-      @rentals.list_rentals
+      @rentals.list_rentals_id
     when 7
       exit_app
     end

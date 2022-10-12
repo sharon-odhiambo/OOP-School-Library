@@ -30,6 +30,3 @@ class Person < Nameable
     true
   end
 end
-
-# m = Person.new(34, "oikjhg")
-# puts m
