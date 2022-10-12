@@ -5,7 +5,11 @@ class Books
   attr_accessor :title, :author
 
   def initialize
-    @books = []
+    @books = if File.size?('./storage/books.json')
+              JSON.parse(File.read('./storage/books.json'), object_class: OpenStruct)
+             else
+              []
+             end
   end
 
 

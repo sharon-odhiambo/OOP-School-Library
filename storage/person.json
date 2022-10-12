@@ -1,14 +1,16 @@
 [
   {
-    "type": "Student",
-    "age": 25,
-    "name": "Nick",
-    "Parent Permission": true
+    "class": "Student",
+    "age": 11,
+    "name": "w",
+    "Parent Permission": true,
+    "id": 591
   },
   {
-    "type": "Teacher",
-    "age": 36,
-    "name": "Sharon",
-    "specialization": "Maths"
+    "class": "Student",
+    "age": 32,
+    "name": "ddd",
+    "Parent Permission": true,
+    "id": 809
   }
 ]

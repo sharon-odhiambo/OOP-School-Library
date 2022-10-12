@@ -6,13 +6,26 @@ class Rental
   attr_reader :date
 
   def initialize(_date, _books, _people)
-    @books = []
-    @people = []
-    @rentals = []
+    @books = if File.size?('./storage/books.json')
+      JSON.parse(File.read('./storage/books.json'), object_class: OpenStruct)
+     else
+      []
+     end
+    @people = if File.size?('./storage/person.json')
+      JSON.parse(File.read('./storage/person.json'), object_class:OpenStruct )
+     else
+      []
+     end
+    @rentals =  if File.size?('./storage/rental.json')
+      JSON.parse(File.read('./storage/rental.json'), object_class:OpenStruct )
+     else
+      []
+     end
   end
 
   def create_rental
     puts 'Select a book from the following list by number'
+    puts @rentals
     @books.each_with_index do |book, index|
       puts "#{index}) Title: \"#{book.title}\", Author: #{book.author}"
     end
@@ -29,15 +42,16 @@ class Rental
     puts "Date: #{date}"
     
     rental = Rental.new(date, book, person)
-    my_rental = {'Date': date, 'title': book.title, 'author': book.author, 'age': person.age, 'name': person.name}
+    puts person
+    my_rental = {'Date': date, 'title': book.title, 'author': book.author, 'age': person.age, 'name': person.name, 'id': person.id}
     @rentals << rental
-    if File.size?('./rental.json')
-      file = File.read('./rental.json')
+    if File.size?('./storage/rental.json')
+      file = File.read('./storage/rental.json')
       rental_list = JSON.parse(file)
-      rental_list << my_student
-      File.write('./rental.json', JSON.pretty_generate(rental_list))
+      rental_list << my_rental
+      File.write('./storage/rental.json', JSON.pretty_generate(rental_list))
     else
-    File.write('./rental.json', JSON.pretty_generate([my_rental]), mode: "a")
+    File.write('./storage/rental.json', JSON.pretty_generate([my_rental]), mode: "a")
     end
     puts 'Book rented successfully'
   end
@@ -45,12 +59,11 @@ class Rental
   def list_rentals
     puts 'Enter person ID: '
     person_id = gets.chomp.to_i
-
-    rentals = @rentals.filter { |rental| rental.person.id == person_id }
+    rentals = @rentals.filter { |rental| rental.id == person_id }
     if @rentals.length.positive?
       rentals.each do |rental|
         puts 'Rentals: '
-        puts "Date: #{rental.date}, Book \"#{rental.book.title}\" by #{rental.book.author}"
+        puts "Date: #{rental.date}, Book \"#{rental.title}\" by #{rental.author}"
       end
     else
       puts 'No rentals found for this person'

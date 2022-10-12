@@ -7,7 +7,13 @@ class Person
   def initialize(age, name)
     @age = age
     @name = name
-    @people = []
+    @id = Random.rand(1..1000)
+    @people = if File.size?('./storage/person.json')
+      JSON.parse(File.read('./storage/person.json'), object_class:OpenStruct )
+     else
+      []
+     end
+     
   end
 
   def create_person
@@ -48,7 +54,7 @@ class Person
     end
 
     student = Student.new(age, name, permission)
-    my_student = {'type': 'Student', 'age': age, 'name': name, 'Parent Permission': permission}
+    my_student = {'class': 'Student', 'age': age, 'name': name, 'Parent Permission': permission, 'id': @id}
     @people << student
     if File.size?('./storage/person.json')
       file = File.read('./storage/person.json')
@@ -70,7 +76,7 @@ class Person
     specialization = gets.chomp.to_s
 
     teacher = Teacher.new(age, name, specialization)
-    my_teacher = {'type': 'Teacher', 'age': age, 'name': name, 'specialization': specialization}
+    my_teacher = {'class': 'Teacher', 'age': age, 'name': name, 'specialization': specialization, 'id': @id}
     @people << teacher
     if File.size?('./storage/person.json')
       file = File.read('./storage/person.json')
