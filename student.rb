@@ -1,5 +1,8 @@
+# frozen_string_literal: true
+
 require './person'
 
+# This class defines the Student
 class Student < Person
   attr_reader :classroom
   attr_accessor :age, :name, :parent_permission

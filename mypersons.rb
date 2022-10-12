@@ -1,6 +1,9 @@
+# frozen_string_literal: true
+
 require_relative './teacher'
 require_relative './student'
 
+# This class defines the Student and Teacher logics' methods
 class Person
   attr_accessor :age, :name, :specialization, :parent_permission
 
@@ -9,11 +12,10 @@ class Person
     @name = name
     @id = Random.rand(1..1000)
     @people = if File.size?('./storage/person.json')
-      JSON.parse(File.read('./storage/person.json'), object_class:OpenStruct )
-     else
-      []
-     end
-     
+                JSON.parse(File.read('./storage/person.json'), object_class: OpenStruct)
+              else
+                []
+              end
   end
 
   def create_person
@@ -35,6 +37,8 @@ class Person
 
   private
 
+  # rubocop:disable Metrics/MethodLength
+  # rubocop:disable Metrics/AbcSize
   def create_student
     print 'Age: '
     age = gets.chomp.to_i
@@ -54,7 +58,7 @@ class Person
     end
 
     student = Student.new(age, name, permission)
-    my_student = {'class': 'Student', 'age': age, 'name': name, 'Parent Permission': permission, 'id': @id}
+    my_student = { 'class': 'Student', 'age': age, 'name': name, 'Parent Permission': permission, 'id': @id }
     @people << student
     if File.size?('./storage/person.json')
       file = File.read('./storage/person.json')
@@ -62,7 +66,7 @@ class Person
       student_list << my_student
       File.write('./storage/person.json', JSON.pretty_generate(student_list))
     else
-    File.write('./storage/person.json', JSON.pretty_generate([my_student]), mode: "a")
+      File.write('./storage/person.json', JSON.pretty_generate([my_student]), mode: 'a')
     end
     puts 'Person created successfully'
   end
@@ -76,7 +80,7 @@ class Person
     specialization = gets.chomp.to_s
 
     teacher = Teacher.new(age, name, specialization)
-    my_teacher = {'class': 'Teacher', 'age': age, 'name': name, 'specialization': specialization, 'id': @id}
+    my_teacher = { 'class': 'Teacher', 'age': age, 'name': name, 'specialization': specialization, 'id': @id }
     @people << teacher
     if File.size?('./storage/person.json')
       file = File.read('./storage/person.json')
@@ -84,8 +88,10 @@ class Person
       teacher_list << my_teacher
       File.write('./storage/person.json', JSON.pretty_generate(teacher_list))
     else
-    File.write('./storage/person.json', JSON.pretty_generate([my_teacher]), mode: "a")
+      File.write('./storage/person.json', JSON.pretty_generate([my_teacher]), mode: 'a')
     end
     puts 'Person created successfully'
   end
+  # rubocop:enable Metrics/MethodLength
+  # rubocop:enable Metrics/AbcSize
 end

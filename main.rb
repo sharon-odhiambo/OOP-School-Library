@@ -1,9 +1,12 @@
+# frozen_string_literal: true
+
 require_relative './mybooks'
 require_relative './mypersons'
 require_relative './myrentals'
 
+# This class presents the start options and the user's choices
 class Main
-  attr_accessor :title, :author, :name, :age , :books
+  attr_accessor :title, :author, :name, :age, :books
   attr_reader :date
 
   def initialize
@@ -12,8 +15,12 @@ class Main
     @rentals = Rental.new(date, @books, @people)
   end
 
+  # rubocop:disable Metrics/MethodLength
   def library_options
     print "Welcome to the School Library App!\n"
+    @books.list_books
+    @people.list_people
+    @rentals.list_rentals
     @options = 0
     while @options != 7
       print "\nPlease choose an option by entering a number: \n"
@@ -43,12 +50,13 @@ class Main
     when 5
       @rentals.create_rental
     when 6
-      @rentals.list_rentals
+      @rentals.list_rentals_id
     when 7
       exit_app
     end
   end
   # rubocop:enable Metrics/CyclomaticComplexity
+  # rubocop:enable Metrics/MethodLength
 
   private
 
