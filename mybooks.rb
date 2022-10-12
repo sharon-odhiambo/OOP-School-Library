@@ -1,12 +1,10 @@
-# frozen_string_literal: true
-
 require_relative './book'
 require 'json'
 
-# This class defines the Book's logics methods
 class Books
   attr_accessor :title, :author
 
+  # rubocop:enable /CyclomaticComplexity
   def initialize
     @books = if File.size?('./storage/books.json')
                JSON.parse(File.read('./storage/books.json'), object_class: OpenStruct)
@@ -15,8 +13,6 @@ class Books
              end
   end
 
-  # rubocop:disable Metrics/MethodLength
-  # rubocop:disable Metrics/AbcSize
   def create_book
     print 'Title: '
     title = gets.chomp.to_s
@@ -24,7 +20,7 @@ class Books
     author = gets.chomp.to_s
 
     book = Book.new(title, author)
-    my_book = { 'title': title, 'author': author }
+    my_book = { title: title, author: author }
     @books << book
     if File.size?('./storage/books.json')
       file = File.read('./storage/books.json')
@@ -36,8 +32,6 @@ class Books
     end
     puts 'Book created successfully'
   end
-  # rubocop:enable Metrics/MethodLength
-  # rubocop:enable Metrics/AbcSize
 
   def list_books
     if @books.length.positive?

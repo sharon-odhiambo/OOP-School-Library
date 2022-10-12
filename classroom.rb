@@ -1,8 +1,5 @@
-# frozen_string_literal: true
-
 require_relative './student'
 
-# This class defines the student's classroom
 class Classroom
   attr_accessor :label
   attr_reader :students

@@ -1,8 +1,5 @@
-# frozen_string_literal: true
-
 require_relative './nameable'
 
-# This class defines the base decorator
 class BaseDecorator < Nameable
   attr_accessor :nameable
 

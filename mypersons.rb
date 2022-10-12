@@ -1,9 +1,6 @@
-# frozen_string_literal: true
-
 require_relative './teacher'
 require_relative './student'
 
-# This class defines the Student and Teacher logics' methods
 class Person
   attr_accessor :age, :name, :specialization, :parent_permission
 
@@ -37,8 +34,6 @@ class Person
 
   private
 
-  # rubocop:disable Metrics/MethodLength
-  # rubocop:disable Metrics/AbcSize
   def create_student
     print 'Age: '
     age = gets.chomp.to_i
@@ -58,7 +53,7 @@ class Person
     end
 
     student = Student.new(age, name, permission)
-    my_student = { 'class': 'Student', 'age': age, 'name': name, 'Parent Permission': permission, 'id': @id }
+    my_student = { class: 'Student', age: age, name: name, 'Parent Permission': permission, id: @id }
     @people << student
     if File.size?('./storage/person.json')
       file = File.read('./storage/person.json')
@@ -80,7 +75,7 @@ class Person
     specialization = gets.chomp.to_s
 
     teacher = Teacher.new(age, name, specialization)
-    my_teacher = { 'class': 'Teacher', 'age': age, 'name': name, 'specialization': specialization, 'id': @id }
+    my_teacher = { class: 'Teacher', age: age, name: name, specialization: specialization, id: @id }
     @people << teacher
     if File.size?('./storage/person.json')
       file = File.read('./storage/person.json')
@@ -92,6 +87,4 @@ class Person
     end
     puts 'Person created successfully'
   end
-  # rubocop:enable Metrics/MethodLength
-  # rubocop:enable Metrics/AbcSize
 end

@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require_relative './basedecorator'
 require_relative './capitalizedecorator'
 require_relative './trimmerdecorator'
@@ -7,7 +5,6 @@ require_relative './book'
 require_relative './rental'
 require_relative './nameable'
 
-# This class defines the Person
 class Person < Nameable
   attr_reader :rentals, :id
   attr_accessor :name, :age
@@ -33,6 +30,3 @@ class Person < Nameable
     true
   end
 end
-
-# m = Person.new(34, "oikjhg")
-# puts m

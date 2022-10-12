@@ -1,15 +1,10 @@
-# frozen_string_literal: true
-
 require_relative './book'
 require_relative './person'
 require_relative './rental'
 
-# This class defines the rentals logics' methods
 class Rental
   attr_reader :date
 
-  # rubocop:disable Metrics/MethodLength
-  # rubocop:disable Metrics/AbcSize
   def initialize(_date, _books, _people)
     @books = if File.size?('./storage/books.json')
                JSON.parse(File.read('./storage/books.json'), object_class: OpenStruct)
@@ -30,7 +25,6 @@ class Rental
 
   def create_rental
     puts 'Select a book from the following list by number'
-    puts @rentals
     @books.each_with_index do |book, index|
       puts "#{index}) Title: \"#{book.title}\", Author: #{book.author}"
     end
@@ -48,8 +42,8 @@ class Rental
 
     rental = Rental.new(date, book, person)
     puts person
-    my_rental = { 'Date': date, 'title': book.title, 'author': book.author, 'age': person.age, 'name': person.name,
-                  'id': person.id }
+    my_rental = { Date: date, title: book.title, author: book.author, age: person.age, name: person.name,
+                  id: person.id }
     @rentals << rental
     if File.size?('./storage/rental.json')
       file = File.read('./storage/rental.json')
@@ -86,6 +80,4 @@ class Rental
       puts 'No rentals found for this person'
     end
   end
-  # rubocop:enable Metrics/MethodLength
-  # rubocop:enable Metrics/AbcSize
 end
