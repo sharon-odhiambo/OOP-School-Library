@@ -1,4 +1,5 @@
 require_relative './nameable'
+require 'pry'
 
 class BaseDecorator < Nameable
   attr_accessor :nameable
@@ -9,6 +10,6 @@ class BaseDecorator < Nameable
   end
 
   def correct_name
-    @nameable.correct_name
+    @nameable
   end
 end
